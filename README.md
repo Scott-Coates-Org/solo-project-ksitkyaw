@@ -45,14 +45,14 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 
 ### Sprint 1
 
-- [ ] Get app approved (DM Scott for approval)
-- [ ] Create mockups (physical paper, low-fi)
+- [x] Get app approved (DM Scott for approval)
+- [x] Create mockups (physical paper, low-fi)
 - [ ] Define scope (DM Scott for approval)
   - [ ] Define milestones for each sprint
   - [ ] Define final deliverable for v1
 - [ ] App must
-  - [ ] Be publicly accessible
-  - [ ] Have working authentication
+  - [x] Be publicly accessible
+  - [x] Have working authentication
   - [ ] Have technical component 5% done
 
 ### Sprint 2
@@ -79,6 +79,6 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 
 [*Replace me with mockups*]
 
-| ![Benjamin Bannekat](https://octodex.github.com/images/bannekat.png) | ![Benjamin Bannekat](https://octodex.github.com/images/bannekat.png) |
+| ![Benjamin Bannekat](public/mockup1.jpg) | ![Benjamin Bannekat](public/mockup2.jpg) |
 |----------------------------------------------------------------------|----------------------------------------------------------------------|
-| ![Benjamin Bannekat](https://octodex.github.com/images/bannekat.png) | ![Benjamin Bannekat](https://octodex.github.com/images/bannekat.png) |
+| ![Benjamin Bannekat](public/mockup3.jpg) | ![Benjamin Bannekat](public/mockup4.jpg) |
