@@ -79,6 +79,6 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 
 [*Replace me with mockups*]
 
-| ![Benjamin Bannekat](public/mockup1.jpg) | ![Benjamin Bannekat](public/mockup2.jpg) |
+| ![Benjamin Bannekat](public/mockup1-min.jpg) | ![Benjamin Bannekat](public/mockup2-min.jpg) |
 |----------------------------------------------------------------------|----------------------------------------------------------------------|
-| ![Benjamin Bannekat](public/mockup3.jpg) | ![Benjamin Bannekat](public/mockup4.jpg) |
+| ![Benjamin Bannekat](public/mockup3-min.jpg) | ![Benjamin Bannekat](public/mockup4-min.jpg) |
