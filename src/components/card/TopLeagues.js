@@ -37,6 +37,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 export default function LeaguesCard() {
+
+  const mouseover = (e) => {
+    e.target.style.backgroundColor = "red";
+    e.target.style.color = "white";
+  }
+  const mouseout = (e) => {
+    e.target.style.backgroundColor = "";
+    e.target.style.color = "";
+  }
+
   return (
     <Card sx={{ mb: 3, minWidth: 275 }}>
       <CardContent>
@@ -44,15 +54,15 @@ export default function LeaguesCard() {
       <Table sx={{ minWidth: 500 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Top Leagues</StyledTableCell>
+            <StyledTableCell onClick={() => console.log("clicked")}>Top Leagues</StyledTableCell>
       
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => {
             return (
-              <StyledTableRow>
-                <StyledTableCell>
+              <StyledTableRow key={row}>
+                <StyledTableCell onMouseOver={mouseover} onMouseOut={mouseout}>
                   {row}
                 </StyledTableCell>
               </StyledTableRow>

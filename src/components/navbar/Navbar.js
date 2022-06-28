@@ -16,14 +16,12 @@ import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import FavouritesCard from 'components/card/Favourites';
-import LeaguesCard from 'components/card/Leagues';
-import { useHistory, Link } from 'react-router-dom';
+
 
 const drawerWidth = 240;
 const navItems = ['Profile', 'League', 'Sign up'];
 
-export default function DrawerAppBar(props) {
+export default function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -95,7 +93,7 @@ export default function DrawerAppBar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box>
       <AppBar component="nav">
         <Toolbar>
           <IconButton
@@ -151,7 +149,7 @@ export default function DrawerAppBar(props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="div" sx={{width: "100%", p: 3 }}>
+      {/* <Box component="div" sx={{width: "100%", p: 3 }}>
         <Toolbar />
         
         <Box sx={{float: "right",px: 5, width: "70%"}} component="section">
@@ -174,6 +172,6 @@ export default function DrawerAppBar(props) {
         </Box>
         
 
-      </Box>
+      </Box> */}
     </Box>
   )}
