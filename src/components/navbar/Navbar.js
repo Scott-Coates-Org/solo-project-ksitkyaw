@@ -16,18 +16,26 @@ import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import { useHistory } from 'react-router-dom';
 
 
 const drawerWidth = 240;
-const navItems = ['Profile', 'League', 'Sign up'];
+const navItems = ['Profile', 'League', 'Login'];
 
 export default function Navbar(props) {
+  const history = useHistory();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const handleClick = (e) => {
+    let route = e.currentTarget.textContent;
+    console.log(route)
+    history.push(`/${route.toLowerCase()}`)
+  }
 
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -125,7 +133,7 @@ export default function Navbar(props) {
               />
             </Search>
             {navItems.map((item) => (
-              <Button key={item} sx={{ mr: 5, color: '#fff' }}>
+              <Button key={item} onClick={handleClick} sx={{ mr: 5, color: '#fff' }}>
                 {item}
               </Button>
             ))}

@@ -53,14 +53,13 @@ function App() {
       <AuthProvider onLogin={storeUserData}>
         <Router history={history}>
           <Switch>
-            <Route path='/profile' component={Profilepage} {...props}/>
-            <Route path='/home' component={Welcome} {...props}/>
+            <Route exact path='/' component={Welcome} {...props}/>
             <Route path='/league' component={League} {...props}/>
             <Route path="/login" render={(routeProps) => <Login {...routeProps} {...props} firebase={firebase} />} />
             <Route path="/logout" render={(routeProps) => <Logout {...routeProps} {...props} firebase={firebase} />} />
 
             {/* this must be on the bottom */}
-            <ProtectedRoute path="/" component={Home} {...props} />
+            <ProtectedRoute path="/profile" component={Profilepage} {...props} />
           </Switch>
         </Router>
       </AuthProvider >
@@ -115,7 +114,7 @@ function withAuthenticationRequired(Component, options) {
           };
           console.log(opts)
 
-          history.push('/home', opts)
+          history.push('/login', opts)
         }
       }
 

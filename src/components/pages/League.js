@@ -22,13 +22,13 @@ export default function League() {
                     <Button>Standings</Button>
                     <Button>Fixtures</Button>
                 </ButtonGroup>
-                <Profile/>
-                {/* <Standing/> */}
+                {/* <Profile/> */}
+                <Standing/>
             </Box>
             <Box component="div" sx={{ width: "30%" }}>
               <FavouritesCard/>
-              <TopFixtures/>
-              {/* <LeaguesCard/> */}
+              {/* <TopFixtures/> */}
+              <LeaguesCard/>
             </Box>
             
 

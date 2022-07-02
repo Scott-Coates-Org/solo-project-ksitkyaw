@@ -48,19 +48,21 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 - [x] Get app approved (DM Scott for approval)
 - [x] Create mockups (physical paper, low-fi)
 - [ ] Define scope (DM Scott for approval)
-  - [ ] Define milestones for each sprint
-  - [ ] Define final deliverable for v1
+  - [x] Define milestones for each sprint
+  - [x] Define final deliverable for v1
 - [ ] App must
   - [x] Be publicly accessible
   - [x] Have working authentication
-  - [ ] Have technical component 5% done
+  - [x] Have technical component 5% done
 
 ### Sprint 2
 
 - [ ] Technical component 25%
 - [ ] Re-evaluate milestones and features
-- [ ] [*Fill me in with Sprint 2 milestones*]
-- [ ] [*Fill me in with Sprint 2 milestones*]
+- [ ] Fill database with basic league and team data
+  - [ ] use that data and build select favourite component
+  - [ ] use that data for top league component
+- [ ] The selected favourites must be saved in firebase users collection 
 
 ### Sprint 3
 
