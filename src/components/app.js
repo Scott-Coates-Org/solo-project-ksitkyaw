@@ -14,6 +14,8 @@ import ErrorBoundary from 'components/error-boundary';
 import Welcome from './pages/Welcome';
 import League from './pages/League';
 import Profilepage from './pages/Profilepage';
+import Choose from './chooseFav/Choose';
+import { fetchAllLeagues } from 'redux/league';
 
 // DO NOT import BrowserRouter (as per tutorial). that caused router to not actually do anything.
 // see here: https://stackoverflow.com/questions/63554233/react-router-v5-history-push-changes-the-address-bar-but-does-not-change-the
@@ -40,6 +42,10 @@ function App() {
     dispatch(getData());
   }, []);
 
+  useEffect(() => {
+    dispatch(fetchAllLeagues())
+  }, [])
+
   const storeUserData = user => {
     const providerData = user.providerData[0];
 
@@ -48,6 +54,8 @@ function App() {
     dispatch(getDataSuccess(userData));
   };
 
+  
+
   const appElement = (
     <ErrorBoundary>
       <AuthProvider onLogin={storeUserData}>
@@ -55,6 +63,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Welcome} {...props}/>
             <Route path='/league' component={League} {...props}/>
+            <Route path='/favourites' component={Choose} {...props}/>
             <Route path="/login" render={(routeProps) => <Login {...routeProps} {...props} firebase={firebase} />} />
             <Route path="/logout" render={(routeProps) => <Logout {...routeProps} {...props} firebase={firebase} />} />
 

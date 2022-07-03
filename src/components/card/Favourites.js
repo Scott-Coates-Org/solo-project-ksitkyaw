@@ -7,6 +7,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Typography from '@mui/material/Typography';
 import ShareIcon from '@mui/icons-material/Share';
 import IconButton from '@mui/material/IconButton';
+import { Link } from '@mui/material';
 
 
 export default function FavouritesCard() {
@@ -16,7 +17,7 @@ export default function FavouritesCard() {
         <Typography sx={{mb: 3,display: "flex"}} variant="h6" component="div">
           Choose your favourite league
           <IconButton sx={{ ml: "auto"}} aria-label="share">
-            <ArrowForwardIosIcon />
+            <Link href="/favourites" underline="none"><ArrowForwardIosIcon /></Link>
         </IconButton>
         </Typography>
         <Typography sx={{ mb: 3, display: "flex"}} variant="h6" component="div">

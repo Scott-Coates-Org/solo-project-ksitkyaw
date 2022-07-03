@@ -6,14 +6,21 @@ import { useHistory, Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Welcome() {
+
+  const { data, isLoaded, hasErrors} = useSelector((state) => state.league)
+
   return (
     <Box sx={{ display: 'flex' }}>
         <Navbar/>
         <Box component="div" sx={{width: "100%", p: 3 }}>
             <Toolbar />
-            
+            {!isLoaded && 'Widgets loading…'}
+            {hasErrors && 'Error Loading'}
+            {isLoaded &&
+            <>
             <Box sx={{float: "right",px: 5, width: "70%"}} component="section">
               <Typography variant="h2" sx={{ fontWeight: 700, color: 'maroon', my: "100px"}}>
                   WELCOME to the Match Chat
@@ -32,8 +39,8 @@ export default function Welcome() {
               <FavouritesCard/>
               <LeaguesCard/>
             </Box>
-            
-
+            </>
+            }
         </Box>
     </Box>
 

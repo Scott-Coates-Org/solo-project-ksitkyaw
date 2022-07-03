@@ -10073,6 +10073,11 @@ react-transition-group@^4.4.2:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-use-wizard@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-use-wizard/-/react-use-wizard-2.2.1.tgz#95313e4ea2647dc1804904df4a73ac5e1f49790c"
+  integrity sha512-GcoV059pGKcR+gxkeDhTFt+1lz0pnCIN6E4Y2PpppoUOLNjL7+h3710pZegvCkHB8dhTHd3tXIUZtQEQHd1Y7A==
+
 react@^17.0.0:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"

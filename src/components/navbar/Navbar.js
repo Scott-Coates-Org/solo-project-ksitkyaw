@@ -33,7 +33,6 @@ export default function Navbar(props) {
 
   const handleClick = (e) => {
     let route = e.currentTarget.textContent;
-    console.log(route)
     history.push(`/${route.toLowerCase()}`)
   }
 

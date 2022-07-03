@@ -57,12 +57,12 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 
 ### Sprint 2
 
-- [ ] Technical component 25%
-- [ ] Re-evaluate milestones and features
+- [x] Technical component 25%
+- [x] Re-evaluate milestones and features
 - [ ] Fill database with basic league and team data
   - [ ] use that data and build select favourite component
-  - [ ] use that data for top league component
-- [ ] The selected favourites must be saved in firebase users collection 
+  - [x] use that data for top league component
+- [ ] The selected favourites must be saved in firebase users collection
 
 ### Sprint 3
 

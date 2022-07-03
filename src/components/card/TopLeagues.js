@@ -11,6 +11,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import client from 'firebase/client';
+import { useSelector } from 'react-redux';
 
 
 const rows = ["Premier League", "La Liga", "Bundesliga", "Seria A", "Ligue1"];
@@ -37,6 +39,18 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 export default function LeaguesCard() {
+  const {data, isLoaded, hasErrors} = useSelector((state) => state.league)
+
+  // React.useEffect(() => {
+  //   async function _fetchAllWidgetsFromDb() {
+  //     const snapshot = await client.firestore().collection('leagues').get();
+    
+  //     const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    
+  //     return data;
+  //   }
+  //   _fetchAllWidgetsFromDb().then(data => setLeagues(data))
+  // })
 
   const mouseover = (e) => {
     e.target.style.backgroundColor = "red";
@@ -59,11 +73,11 @@ export default function LeaguesCard() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => {
+          {data.map((league) => {
             return (
-              <StyledTableRow key={row}>
+              <StyledTableRow key={league.id}>
                 <StyledTableCell onMouseOver={mouseover} onMouseOut={mouseout}>
-                  {row}
+                  {league.name}
                 </StyledTableCell>
               </StyledTableRow>
 
