@@ -17,7 +17,7 @@ export default function Welcome() {
         <Navbar/>
         <Box component="div" sx={{width: "100%", p: 3 }}>
             <Toolbar />
-            {!isLoaded && 'Widgets loading…'}
+            {!isLoaded && 'loading…'}
             {hasErrors && 'Error Loading'}
             {isLoaded &&
             <>

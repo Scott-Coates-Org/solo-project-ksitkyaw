@@ -4,11 +4,13 @@ import { combineReducers } from 'redux'
 import { reducer as user } from './user';
 import { reducer as widget } from './widget';
 import { reducer as league } from './league';
+import { reducer as team } from './team';
 
 const reducer = combineReducers({
     user,
     widget,
-    league
+    league,
+    team
 });
 
 const store = configureStore({

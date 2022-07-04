@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <div className='d-flex justify-content-between'>
         <Button variant='contained' onClick={() => previousStep() }>Previous Step</Button>
-        <Button variant='contained' onClick={() => handlenext()}>Previous Step</Button>
+        <Button variant='contained' onClick={() => handlenext()}>Next Step</Button>
     </div>
   )
 }

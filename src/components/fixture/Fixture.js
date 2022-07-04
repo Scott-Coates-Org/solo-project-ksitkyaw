@@ -10,9 +10,18 @@ import { Box } from '@mui/material';
 
 export default function Fixture(props) {
     const {width, height} = props;
+    const mouseover = (e) => {
+        e.target.style.backgroundColor = "lightgrey";
+        e.target.style.color = "white";
+      }
+      const mouseout = (e) => {
+        e.target.style.backgroundColor = ""; 
+        e.target.style.color = "";
+      }
+
   return (
     <>
-        <ListItem alignItems="center" sx={{width: width? width : null, height: height? height : null, justifyContent: "space-between"}}>
+        <ListItem onMouseOver={mouseover} onMouseOut={mouseout} alignItems="center" sx={{width: width? width : null, height: height? height : null, justifyContent: "space-between"}}>
             <Box sx={{display: "flex", justifyContent: "start", alignItems: "center"}}>
             <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{mr: 0}} />

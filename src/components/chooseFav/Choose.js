@@ -1,6 +1,8 @@
 import { Box, Button } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Wizard } from 'react-use-wizard'
+import { fetchAllTeams } from 'redux/team'
 import ChooseLeague from './ChooseLeague'
 import ChoosePlayer from './ChoosePlayer'
 import ChooseTeam from './ChooseTeam'
@@ -10,6 +12,12 @@ const Header = () => <h3>Choose your favourites</h3>
 
 
 export default function Choose() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllTeams());
+  }, [dispatch])
+
   return (
     <Box sx={{
         width: "50%",

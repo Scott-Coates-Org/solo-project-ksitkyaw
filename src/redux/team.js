@@ -7,8 +7,8 @@ const initialState = {
   hasErrors: false,
 };
 
-const league = createSlice({
-  name: "league",
+const team = createSlice({
+  name: "team",
   initialState,
   reducers: {
     getData: (state) => {
@@ -30,20 +30,20 @@ const league = createSlice({
   }
 });
 
-export const reducer = league.reducer;
+export const reducer =team.reducer;
 
 export const {
   getData, getDataSuccess, getDataFailure, createDataFailure
-} = league.actions;
+} =team.actions;
 
-export const fetchAllLeagues = createAsyncThunk(
-  "league/fetchAllLeagues",
+export const fetchAllTeams = createAsyncThunk(
+  "team/fetchAllTeams",
   async (_, thunkAPI) => {
     // Set the loading state to true
     thunkAPI.dispatch(getData());
 
     try {
-      const data = await _fetchAllLeaguesFromDb();
+      const data = await _fetchAllTeamsFromDb();
       thunkAPI.dispatch(getDataSuccess(data));
     } catch (error) {
       console.error('error', error)
@@ -52,6 +52,21 @@ export const fetchAllLeagues = createAsyncThunk(
     }
   }
 );
+
+export const fetchNextDocs = createAsyncThunk(
+    "team/fetchAllTeams",
+    async (_, thunkAPI) => {
+    // Set the loading state to true
+    thunkAPI.dispatch(getData());
+
+    try {
+        const data = await _nextDocs();
+        thunkAPI.dispatch(getDataSuccess(data))
+    } catch (error) {
+        console.error('error', error)
+        thunkAPI.dispatch(getDataFailure(error))
+    }
+})
 
 // export const createWidget = createAsyncThunk(
 //   "widget/createWidget",
@@ -97,12 +112,26 @@ export const fetchAllLeagues = createAsyncThunk(
 //   }
 // );
 
-async function _fetchAllLeaguesFromDb() {
-  const snapshot = await firebaseClient.firestore().collection('leagues').get();
+async function _getDocuments(col, limit) {
+    const snapshot = await firebaseClient.firestore().collection(col).limit(limit).get();
+    return snapshot.docs
+}
 
-  const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+async function _fetchAllTeamsFromDb() {
+    const snapshot = await firebaseClient.firestore().collection('teams').limit(6).get();
 
-  return data;
+    const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    return data;
+}
+
+//the function fetch the next set of doc after the first one
+async function _nextDocs() {
+    const snapshotDocs = await _getDocuments("teams", 6);
+    const last = snapshotDocs[snapshotDocs.length-1]
+    const next = await firebaseClient.firestore().collection("teams").startAfter(last).limit(6).get();
+    const data = next.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    return data;
 }
 
 // async function _createWidget(title, type, photo) {

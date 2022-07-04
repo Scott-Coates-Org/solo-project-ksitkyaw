@@ -53,11 +53,11 @@ export default function LeaguesCard() {
   // })
 
   const mouseover = (e) => {
-    e.target.style.backgroundColor = "red";
+    e.target.style.backgroundColor = "lightgrey";
     e.target.style.color = "white";
   }
   const mouseout = (e) => {
-    e.target.style.backgroundColor = "";
+    e.target.style.backgroundColor = ""; 
     e.target.style.color = "";
   }
 
