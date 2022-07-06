@@ -13,6 +13,8 @@ import { fetchAllLeagues } from 'redux/league'
 
 export default function League() {
   const { data, isLoaded, hasErrors, } = useSelector((state) => state.league);
+  const { league } = useSelector((state) => state.standing)
+  console.log(league)
 
 
   return (
@@ -25,7 +27,7 @@ export default function League() {
             {isLoaded &&
             <>
               <Box sx={{float: "right",px: 5, width: "70%", display: "flex", alignItems: "center", flexDirection: "column"}} component="section">
-                  <img className="my-3" src="https://cdn.sportmonks.com/images/soccer/leagues/501.png"/>
+                  <img className="my-3" src="https://cdn.sportmonks.com/images/soccer/leagues/271.png"/>
                   {/* <Typography variant='h2' sx={{ my: 5, fontWeight: 700, color: "lightgray" }}>Premier League</Typography> */}
                   
                   <ButtonGroup sx={{ mb: 5 }} variant="outlined" aria-label="outlined button group">

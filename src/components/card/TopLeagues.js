@@ -12,7 +12,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import client from 'firebase/client';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDataSuccess, setLeague } from 'redux/standingdata';
 
 
 const rows = ["Premier League", "La Liga", "Bundesliga", "Seria A", "Ligue1"];
@@ -40,6 +41,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function LeaguesCard() {
   const {data, isLoaded, hasErrors} = useSelector((state) => state.league)
+  const dispatch = useDispatch();
 
   // React.useEffect(() => {
   //   async function _fetchAllWidgetsFromDb() {
@@ -61,6 +63,17 @@ export default function LeaguesCard() {
     e.target.style.color = "";
   }
 
+  const handleClick = (e, id) => {
+    fetch(`https://soccer.sportmonks.com/api/v2.0/standings/season/${id}?api_token=${process.env.REACT_APP_FOOTBALL_API_KEY}`)
+    .then(res => res.json())
+    .then(result => {
+      console.log(result?.data[0].standings.data);
+      dispatch(getDataSuccess(result?.data[0].standings.data));
+      console.log(data);
+      setLeague(id);
+    })
+  }
+
   return (
     <Card sx={{ mb: 3, minWidth: 275 }}>
       <CardContent>
@@ -76,7 +89,7 @@ export default function LeaguesCard() {
           {data.map((league) => {
             return (
               <StyledTableRow key={league.id}>
-                <StyledTableCell onMouseOver={mouseover} onMouseOut={mouseout}>
+                <StyledTableCell onClick={(e) => handleClick(e, league.season_id)} onMouseOver={mouseover} onMouseOut={mouseout}>
                   {league.name}
                 </StyledTableCell>
               </StyledTableRow>

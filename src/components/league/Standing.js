@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+import { useSelector } from 'react-redux';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -44,6 +45,10 @@ const rows = [
   ];
 
 export default function Standing() {
+
+  const { data, isLoaded, hasErrors} = useSelector((state) => state.standing);
+  console.log(data)
+
   return (
     <Box>
         
@@ -60,16 +65,16 @@ export default function Standing() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <StyledTableRow key={row.Rank}>
+              {data.map((row) => (
+                <StyledTableRow key={row.position}>
                   <StyledTableCell align="left" component="th" scope="row">
-                    {row.Rank}
+                    {row.position}
                   </StyledTableCell>
-                  <StyledTableCell align="left">{row.Club}</StyledTableCell>
-                  <StyledTableCell align="left">{row.Win}</StyledTableCell>
-                  <StyledTableCell align="left">{row.Draw}</StyledTableCell>
-                  <StyledTableCell align="left">{row.Lose}</StyledTableCell>
-                  <StyledTableCell align="left">{row.Points}</StyledTableCell>
+                  <StyledTableCell align="left">{row.team_name}</StyledTableCell>
+                  <StyledTableCell align="left">{row.overall.won}</StyledTableCell>
+                  <StyledTableCell align="left">{row.overall.draw}</StyledTableCell>
+                  <StyledTableCell align="left">{row.overall.lost}</StyledTableCell>
+                  <StyledTableCell align="left">{row.overall.points}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
