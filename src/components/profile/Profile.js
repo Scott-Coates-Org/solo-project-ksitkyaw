@@ -1,27 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Avatar from '@mui/material/Avatar';
 import { Grid, Box, Typography, Paper, List } from '@mui/material';
 import Select from 'components/select/Select';
 import Fixture from 'components/fixture/Fixture';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAuth } from 'components/user/auth';
 
 export default function Profile() {
-  return (
+    const {user} = useAuth();
+    const dispatch = useDispatch();
+    const { data, isLoaded, hasErrors } = useSelector((state) => state.userr);
+    console.log(data)
+
+    return (
+        
     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        {!isLoaded && 'Widgets loading…'}
+        {hasErrors && 'Error Loading'}
+        {isLoaded && 
+        <React.Fragment key={data[0]?.id}>
         <Grid item md={6}>
             <Avatar sx={{width: 250, height: 250, objectFit: "cover"}} alt="Remy Sharp" src="https://images.pexels.com/photos/7913028/pexels-photo-7913028.jpeg?cs=srgb&dl=pexels-alejandro-peralta-7913028.jpg&fm=jpg" />
         </Grid>
         <Grid item md={6}>
             <Paper sx={{width:"auto", p: 3, mb:5}}>
-                UserName:<span style={{paddingLeft: 30}}>hollagunner</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet placerat felis
-                vel placerat. Pellentesque ut felis a nulla euismod aliquam. Fusce et arcu tortor. Quisque ut pretium mauris</p>
+                UserName:<span style={{paddingLeft: 30}}>{user.displayName}</span>
+                <p>{data[0]?.desc}</p>
             </Paper>
         </Grid>
         <Grid item md={6}>
             <Paper sx={{maxWidth:"75%", p: 2, mb: 5}}>
                 My Club:
                 <ul>
-                <li>Arsenal</li>
+                <li>{data[0]?.favourite.teams}</li>
                 </ul>
             </Paper>
         </Grid>
@@ -29,7 +40,7 @@ export default function Profile() {
             <Paper sx={{maxWidth:"75%", p:2}}>
                 My League:
                 <ul>
-                <li>Premier League</li>
+                <li>{data[0]?.favourite.leagues}</li>
                 <li>La liga</li>
                 </ul>
             </Paper>
@@ -39,7 +50,7 @@ export default function Profile() {
             <Paper sx={{maxWidth:"75%", p:2}}>
                 My Players:
                 <ul>
-                <li>Theo Walcott</li>
+                <li>{data[0]?.favourite.players}</li>
                 <li>Jack Wilshere</li>
                 </ul>
             </Paper>
@@ -65,6 +76,9 @@ export default function Profile() {
                 <Fixture width="100%" height={100}/>
             </List>
         </Grid>
+        </React.Fragment>
+        }
     </Grid>
+        
   )
 }

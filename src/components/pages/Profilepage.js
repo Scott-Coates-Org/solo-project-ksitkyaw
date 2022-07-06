@@ -1,13 +1,25 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Box, Toolbar, Typography} from '@mui/material'
 import Navbar from 'components/navbar/Navbar'
 import FavouritesCard from 'components/card/Favourites'
 import { Button, ButtonGroup } from '@mui/material'
 import Profile from 'components/profile/Profile'
 import TopFixtures from 'components/card/TopFixtures'
+import { useDispatch, useSelector } from 'react-redux'
+// import { fetchAllUser } from 'redux/user'
+import { fetchAllUserr } from 'redux/myuser'
+import { fetchAllTeams } from 'redux/team'
 
 
 export default function Profilepage() {
+  const dispatch = useDispatch();
+  const { data, isLoaded, hasErrors } = useSelector(state => state.userr);
+  
+
+  useEffect(() => {
+    dispatch(fetchAllUserr());
+}, [dispatch])
+
   return (
     <Box sx={{ display: 'flex' }}>
         <Navbar/>

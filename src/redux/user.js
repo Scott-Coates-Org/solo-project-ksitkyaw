@@ -1,8 +1,10 @@
 // https://dev.to/thatgalnatalie/how-to-get-started-with-redux-toolkit-41e
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import firebaseClient from 'firebase/client'
+import { useAuth } from 'components/user/auth';
 
 const initialState = {
-  data: {},
+  data: [],
   isLoaded: false,
   hasErrors: false,
 };
@@ -31,3 +33,4 @@ export const reducer = user.reducer;
 export const {
   getData, getDataSuccess, getDataFailure
 } = user.actions;
+

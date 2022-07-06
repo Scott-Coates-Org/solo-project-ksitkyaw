@@ -5,12 +5,14 @@ import { reducer as user } from './user';
 import { reducer as widget } from './widget';
 import { reducer as league } from './league';
 import { reducer as team } from './team';
+import {reducer as userr } from './myuser'
 
 const reducer = combineReducers({
     user,
     widget,
     league,
-    team
+    team,
+    userr,
 });
 
 const store = configureStore({

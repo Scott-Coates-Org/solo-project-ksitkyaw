@@ -2,15 +2,29 @@ import React from 'react'
 import { Button, ImageList, ImageListItem } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNextDocs } from 'redux/team';
+import { useWizard } from 'react-use-wizard';
+import { useAuth } from 'components/user/auth';
+import firebaseClient from "firebase/client";
+import { useState } from 'react';
 
 
 export default function ChooseTeam() {
   const dispatch = useDispatch();
-  const { data, isLoaded, hasErrors } = useSelector((state) => state.team)
+  const { data, isLoaded, hasErrors } = useSelector((state) => state.team);
+  const { handleStep } = useWizard();
+  const { user } = useAuth();
+  const [team, setTeam] = useState('');
 
-  const handleClick = (e) => {
+  handleStep(async () => {
+    const doc = await firebaseClient.firestore().collection('users').doc(user.uid);
+    return doc.update({
+      "favourite.teams": team
+    })
+  })
+
+  const handleClick = (e, name) => {
     e.target.style.opacity = 0.5;
-    console.log("selected")
+    setTeam(name);
   }
 
   const handleFetch = () => {
@@ -22,7 +36,7 @@ export default function ChooseTeam() {
       <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
         {console.log(data)}
         {data.map((team) => (
-          <ImageListItem sx={{m: 1}} onClick={(e) => handleClick(e)} key={team.id}>
+          <ImageListItem sx={{m: 1}} onClick={(e) => handleClick(e, team.name)} key={team.id}>
             <img
               src={`${team.logo}?w=164&h=164&fit=crop&auto=format`}
               srcSet={`${team.logo}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
