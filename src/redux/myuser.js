@@ -7,6 +7,7 @@ const initialState = {
   hasErrors: false,
 };
 
+//userr is not a typo error :)
 const userr = createSlice({
   name: "userr",
   initialState,
@@ -37,7 +38,7 @@ export const {
 } =userr.actions;
 
 export const fetchAllUserr = createAsyncThunk(
-  "yarsu/fetchAllUserr",
+  "myuser/fetchAllUserr",
   async (_, thunkAPI) => {
     // Set the loading state to true
     thunkAPI.dispatch(getData());
@@ -81,36 +82,36 @@ export const fetchNextDocs = createAsyncThunk(
 //   }
 // );
 
-// export const savePhoto = createAsyncThunk(
-//   "widget/savePhoto",
-//   async (payload) => {
-//     const file = payload.file;
+export const savePhoto = createAsyncThunk(
+  "myuser/savePhoto",
+  async (payload) => {
+    const file = payload.file;
 
-//     try {
-//       const fileName = _appendToFilename(file.name, "_" + Date.now());
-//       const uploadTask = _updloadFile(fileName, file);
+    try {
+      const fileName = _appendToFilename(file.name, "_" + Date.now());
+      const uploadTask = _updloadFile(fileName, file);
 
-//       const uploadPromise = new Promise((resolve, reject) => {
+      const uploadPromise = new Promise((resolve, reject) => {
 
-//         uploadTask.on('state_changed', snapshot => {
-//           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-//           console.log('progress:', progress);
+        uploadTask.on('state_changed', snapshot => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('progress:', progress);
 
-//         }, error => {
-//           reject(error);
-//         }, () => {
-//           uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => resolve(downloadURL)).catch(reject);
-//         });
-//       });
+        }, error => {
+          reject(error);
+        }, () => {
+          uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => resolve(downloadURL)).catch(reject);
+        });
+      });
 
-//       const downloadURL = await uploadPromise;
+      const downloadURL = await uploadPromise;
 
-//       return downloadURL;
-//     } catch (error) {
-//       alert('Error saving photo: ' + JSON.stringify(error));
-//     }
-//   }
-// );
+      return downloadURL;
+    } catch (error) {
+      alert('Error saving photo: ' + JSON.stringify(error));
+    }
+  }
+);
 
 async function _getDocuments(col, limit) {
     const snapshot = await firebaseClient.firestore().collection(col).limit(limit).get();
@@ -141,14 +142,14 @@ async function _nextDocs() {
 // }
 
 // // https://stackoverflow.com/a/31205878/173957
-// function _appendToFilename(filename, string) {
-//   var dotIndex = filename.lastIndexOf(".");
-//   if (dotIndex == -1) return filename + string;
-//   else return filename.substring(0, dotIndex) + string + filename.substring(dotIndex);
-// }
+function _appendToFilename(filename, string) {
+  var dotIndex = filename.lastIndexOf(".");
+  if (dotIndex == -1) return filename + string;
+  else return filename.substring(0, dotIndex) + string + filename.substring(dotIndex);
+}
 
-// function _updloadFile(fileName, file) {
-//   const uploadTask = firebaseClient.storage().ref(`/${fileName}`).put(file);
+function _updloadFile(fileName, file) {
+  const uploadTask = firebaseClient.storage().ref(`/${fileName}`).put(file);
 
-//   return uploadTask;
-// }
+  return uploadTask;
+}

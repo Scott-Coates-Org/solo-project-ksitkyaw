@@ -7,6 +7,7 @@ import { reducer as league } from './league';
 import { reducer as team } from './team';
 import {reducer as userr } from './myuser';
 import { reducer as standing} from "./standingdata";
+import { reducer as fixture } from "./fixturedata";
 
 const reducer = combineReducers({
     user,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
     team,
     userr,
     standing,
+    fixture,
 });
 
 const store = configureStore({

@@ -32,17 +32,17 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
   }));
   
-function createData(Rank, Club, Win, Draw, Lose, Points) {
-    return {Rank, Club, Win, Draw, Lose, Points };
-  }
+// function createData(Rank, Club, Win, Draw, Lose, Points) {
+//     return {Rank, Club, Win, Draw, Lose, Points };
+//   }
   
-const rows = [
-    createData(1, "Arsenal", 0, 0, 0, 0),
-    createData(1, "Liverpool", 0, 0, 0, 0),
-    createData(1, "Man City", 0, 0, 0, 0),
-    createData(1, "Man Utd", 0, 0, 0, 0),
-    createData(1, "Chelsea", 0, 0, 0, 0),
-  ];
+// const rows = [
+//     createData(1, "Arsenal", 0, 0, 0, 0),
+//     createData(1, "Liverpool", 0, 0, 0, 0),
+//     createData(1, "Man City", 0, 0, 0, 0),
+//     createData(1, "Man Utd", 0, 0, 0, 0),
+//     createData(1, "Chelsea", 0, 0, 0, 0),
+//   ];
 
 export default function Standing() {
 

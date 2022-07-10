@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Toolbar, Typography} from '@mui/material'
 import Navbar from 'components/navbar/Navbar'
 import FavouritesCard from 'components/card/Favourites'
@@ -9,9 +9,11 @@ import Profile from 'components/profile/Profile'
 import TopFixtures from 'components/card/TopFixtures'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllLeagues } from 'redux/league'
+import LeagueFixture from 'components/league/LeagueFixture'
 
 
 export default function League() {
+  const [subpage, setSubpage] = useState('standing');
   const { data, isLoaded, hasErrors, } = useSelector((state) => state.league);
   const { league } = useSelector((state) => state.standing)
   console.log(league)
@@ -31,11 +33,11 @@ export default function League() {
                   {/* <Typography variant='h2' sx={{ my: 5, fontWeight: 700, color: "lightgray" }}>Premier League</Typography> */}
                   
                   <ButtonGroup sx={{ mb: 5 }} variant="outlined" aria-label="outlined button group">
-                      <Button>Standings</Button>
-                      <Button>Fixtures</Button>
+                      <Button onClick={() => setSubpage('standing')}>Standings</Button>
+                      <Button onClick={() => setSubpage('fixture')}>Fixtures</Button>
                   </ButtonGroup>
-                  {/* <Profile/> */}
-                  <Standing/>
+                  {subpage == 'standing' ? <Standing/> : <LeagueFixture/>}
+                  
               </Box>
               <Box component="div" sx={{ width: "30%" }}>
                 <FavouritesCard/>
