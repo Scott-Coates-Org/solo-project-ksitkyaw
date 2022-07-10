@@ -59,17 +59,19 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 
 - [x] Technical component 25%
 - [x] Re-evaluate milestones and features
-- [ ] Fill database with basic league and team data
-  - [ ] use that data and build select favourite component
+- [x] Fill database with basic league and team data
+  - [x] use that data and build select favourite component
   - [x] use that data for top league component
-- [ ] The selected favourites must be saved in firebase users collection
+- [x] The selected favourites must be saved in firebase users collection
 
 ### Sprint 3
 
-- [ ] Technical component 50%
-- [ ] Re-evaluate milestones and features
-- [ ] [*Fill me in with Sprint 3 milestones*]
-- [ ] [*Fill me in with Sprint 3 milestones*]
+- [x] Technical component 50%
+- [x] Re-evaluate milestones and features
+- [x] Selected teams will be shown in Profile page
+- [x] Profile picture and description must be editable
+- [x] Standing and Fixtures must be fetched from Api and displayed
+- [ ] Fixtures must show the result if the match has played or is playing
 
 ### Sprint 4
 

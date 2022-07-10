@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getDataSuccess } from 'redux/team';
 
 export default function Fixture(props) {
-    const {width, height, byRound} = props;
+    const {width, height, byRound = null} = props;
     const dispatch = useDispatch();
     const { data, isLoaded, hasErrors } = useSelector(state => state.team)
     // console.log("teamdata",  data)
@@ -47,7 +47,7 @@ export default function Fixture(props) {
 
   return (
     <>
-        {byRound.map((round) => {
+        {byRound && byRound.map((round) => {
             return (
                 <div>
                 <ListItem onMouseOver={mouseover} onMouseOut={mouseout} alignItems="center" sx={{width: width? width : null, height: height? height : null, justifyContent: "space-between"}}>

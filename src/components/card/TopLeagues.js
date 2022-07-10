@@ -70,7 +70,7 @@ export default function LeaguesCard() {
       console.log(result?.data[0].standings.data);
       dispatch(getDataSuccess(result?.data[0].standings.data));
       console.log(data);
-      setLeague(id);
+      dispatch(setLeague(id));
     })
   }
 

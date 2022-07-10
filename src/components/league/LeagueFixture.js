@@ -10,7 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getDataSuccess } from 'redux/team';
 import { firebase } from 'firebase/client';
 
-export default function LeagueFixture() {
+export default function LeagueFixture({season_id}) {
+    console.log(season_id)
     const [round, setRound] = useState(6);
     const [roundOfFixtures, setRoundOfFixtures] = useState([]);
     const dispatch = useDispatch();
@@ -21,14 +22,16 @@ export default function LeagueFixture() {
     
     // console.log("rof",roundOfFixtures)
 
+    // todo - split fetch to another useEffect hook so that it won't make api call every time round change
     useEffect(() => {
+        console.log(season_id)
         const fetchData = async () => {
-            const data = await fetch(`https://soccer.sportmonks.com/api/v2.0/seasons/19686?api_token=${process.env.REACT_APP_FOOTBALL_API_KEY}&include=fixtures`)
+            const data = await fetch(`https://cors-anywhere.herokuapp.com/https://soccer.sportmonks.com/api/v2.0/seasons/${season_id}?api_token=${process.env.REACT_APP_FOOTBALL_API_KEY}&include=fixtures`)
             const result = await data.json();
-            console.log(result.data.fixtures.data);
-            // dispatch(getDataSuccess(result.data.fixtures.data));
+            console.log(result);
+            dispatch(getDataSuccess(result.data.fixtures.data));
             const fixtures = result.data.fixtures.data;
-            const roundOfFixtures = fixtures?.slice(0, 6);
+            const roundOfFixtures = fixtures?.slice(round-6, round);
             setRoundOfFixtures(roundOfFixtures);
             const id = fixtures[0].league_id;
             firebase.firestore().collection('teams').where("league_id", "==", id).get()
@@ -40,7 +43,7 @@ export default function LeagueFixture() {
         }
         fetchData()
         .catch(console.error)
-    }, [round])
+    }, [round, season_id])
 
     return (
         <Card sx={{width: "60%", display: "flex", flexDirection: "column"}}>
@@ -54,9 +57,14 @@ export default function LeagueFixture() {
                     label="Round"
                     onChange={handleChange}
                     >
-                    <MenuItem value={6}>Round1</MenuItem>
-                    <MenuItem value={12}>Round2</MenuItem>
-                    <MenuItem value={18}>Round3</MenuItem>
+                    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22].map((value) => {
+                        return (
+                            <MenuItem key={value} value={value * 6}>Round{value}</MenuItem>
+                        )
+                    })}
+                    
+                    {/* <MenuItem value={12}>Round2</MenuItem>
+                    <MenuItem value={18}>Round3</MenuItem> */}
                     </Select>
                 </FormControl>
             </Box>

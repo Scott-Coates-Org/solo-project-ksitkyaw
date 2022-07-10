@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { firebase } from '../../firebase/client'
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { fetchAllUserr, savePhoto } from 'redux/myuser';
+import Fixturev2 from 'components/fixture/Fixturev2';
 
 export default function Profile() {
     const {user} = useAuth();
@@ -128,8 +129,8 @@ export default function Profile() {
                 <Select/>
             </Box>
             <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                <Fixture width="100%" height={100} />
-                <Fixture width="100%" height={100}/>
+                <Fixturev2 width="100%" height={100} />
+                <Fixturev2 width="100%" height={100}/>
             </List>
         </Grid>
         <Grid item md={12} sx={{mt:2}}>
@@ -138,8 +139,8 @@ export default function Profile() {
                 <Select/>
             </Box>
             <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                <Fixture width="100%" height={100} />
-                <Fixture width="100%" height={100}/>
+                <Fixturev2 width="100%" height={100} />
+                <Fixturev2 width="100%" height={100}/>
             </List>
         </Grid>
         </React.Fragment>

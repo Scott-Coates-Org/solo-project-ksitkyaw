@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, ImageList, ImageListItem } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchNextDocs } from 'redux/team';
+import { fetchNextDocs, getDataSuccess } from 'redux/team';
 import { useWizard } from 'react-use-wizard';
 import { useAuth } from 'components/user/auth';
 import firebaseClient from "firebase/client";
@@ -9,11 +9,24 @@ import { useState } from 'react';
 
 
 export default function ChooseTeam() {
+  const [lastDoc, setLastDoc] = useState();
   const dispatch = useDispatch();
   const { data, isLoaded, hasErrors } = useSelector((state) => state.team);
   const { handleStep } = useWizard();
   const { user } = useAuth();
   const [team, setTeam] = useState('');
+  
+  useEffect(() => {
+    firebaseClient.firestore().collection("teams").orderBy("team_id", "asc").limit(6).get()
+    .then((collections) => {
+      const teams = collections.docs.map((team) => team.data());
+      const lastDoc = collections.docs[collections.docs.length - 1];
+
+      dispatch(getDataSuccess(teams));
+      setLastDoc(lastDoc);
+    })
+  }, [])
+
 
   handleStep(async () => {
     const doc = await firebaseClient.firestore().collection('users').doc(user.uid);
@@ -27,14 +40,24 @@ export default function ChooseTeam() {
     setTeam(name);
   }
 
-  const handleFetch = () => {
-    dispatch(fetchNextDocs())
+  const handleFetch = async () => {
+    console.log("called")
+    firebaseClient.firestore().collection("teams").orderBy("team_id", "asc").startAfter(lastDoc).limit(6).get()
+    .then((collections) => {
+      const teams = collections.docs.map((team) => team.data());
+      const lastDoc = collections.docs[collections.docs.length - 1];
+
+      dispatch(getDataSuccess(teams));
+      console.log(data)
+      setLastDoc(lastDoc);
+      console.log(lastDoc)
+    })
   }
 
   return (
     <>
       <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-        {console.log(data)}
+        {data.length == 0 ? <p>Loading...</p> : ''}
         {data.map((team) => (
           <ImageListItem sx={{m: 1}} onClick={(e) => handleClick(e, team.name)} key={team.id}>
             <img
@@ -46,7 +69,7 @@ export default function ChooseTeam() {
           </ImageListItem>
         ))}
       </ImageList>
-      <Button onClick={handleFetch} variant="outlined">More</Button>
+      <Button onClick={() => handleFetch()} variant="outlined">More</Button>
     </>
 
   );

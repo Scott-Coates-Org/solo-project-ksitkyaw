@@ -14,9 +14,9 @@ const Header = () => <h3>Choose your favourites</h3>
 export default function Choose() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchAllTeams());
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(fetchAllTeams());
+  // }, [dispatch])
 
   return (
     <Box sx={{
