@@ -71,14 +71,14 @@ Update your progress by checking off the tasks for each sprint. We will **not** 
 - [x] Selected teams will be shown in Profile page
 - [x] Profile picture and description must be editable
 - [x] Standing and Fixtures must be fetched from Api and displayed
-- [ ] Fixtures must show the result if the match has played or is playing
+- [x] Fixtures must show the result if the match has played or is playing
 
 ### Sprint 4
 
 - [ ] Technical component 100%
-- [ ] [*Fill me in with Sprint 4 milestones*]
-- [ ] [*Fill me in with Sprint 4 milestones*]
-
+- [x] Make fixture route for each fixture and show match facts in the page.
+- [x] Make fixture collection for supporters and watchers
+- [ ] Make chat component possible when the match is live
 ## Mockups
 
 [*Replace me with mockups*]
