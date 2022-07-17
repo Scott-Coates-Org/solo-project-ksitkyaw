@@ -10,6 +10,7 @@ import { Box } from '@mui/material';
 import { firebase } from 'firebase/client';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDataSuccess } from 'redux/team';
+import styled from 'styled-components';
 
 export default function Fixturev2(props) {
     const {width, height} = props;
@@ -18,10 +19,12 @@ export default function Fixturev2(props) {
         e.target.style.backgroundColor = "lightgrey";
         e.target.style.color = "white";
       }
-      const mouseout = (e) => {
+    const mouseout = (e) => {
         e.target.style.backgroundColor = "";
         e.target.style.color = "";
-      }
+    }
+
+    
   
     return (
         <div>
@@ -50,6 +53,7 @@ export default function Fixturev2(props) {
                     <ListItemAvatar>
                         <Avatar>Vs</Avatar>
                     </ListItemAvatar>
+                    
                     <Box sx={{display: "flex", justifyContent: "end", alignItems: "center", width: "30%"}}>
                         {/* <ListItemText
                         secondary={

@@ -4,7 +4,7 @@ const initialState = {
     data: [],
     isLoaded: false,
     hasErrors: false,
-    league: "",
+    league: 19735,
   };
   
   const standing = createSlice({

@@ -21,14 +21,14 @@ export default function League() {
   console.log(league)
 
   useEffect(() => {
-    fetch(`https://soccer.sportmonks.com/api/v2.0/standings/season/19735?api_token=${process.env.REACT_APP_FOOTBALL_API_KEY}`)
+    fetch(`https://soccer.sportmonks.com/api/v2.0/standings/season/${league}?api_token=${process.env.REACT_APP_FOOTBALL_API_KEY}`)
     .then(res => res.json())
     .then(result => {
       console.log(result?.data[0].standings.data);
       dispatch(getDataSuccess(result?.data[0].standings.data));
       console.log(data);
-      dispatch(setLeague(19735));
-      dispatch(fetchAllLeagues());
+      // dispatch(setLeague(19735));
+      // dispatch(fetchAllLeagues());
     })
     }, [])
 

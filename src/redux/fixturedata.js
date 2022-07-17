@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     fixtures: [],
+    chatFixture: [],
     isLoaded: false,
     hasErrors: false,
   };
@@ -12,7 +13,9 @@ const initialState = {
     reducers: {
       getData: (state) => {
       },
-  
+      getchatFixture: (state, action) => {
+        state.chatFixture = action.payload;
+      },
       getDataSuccess: (state, action) => {
         state.isLoaded = true;
         state.fixtures = action.payload;
@@ -32,5 +35,5 @@ const initialState = {
   export const reducer =fixture.reducer;
   
   export const {
-    getData, getDataSuccess, setLeague, getDataFailure, createDataFailure
+    getData, getDataSuccess, setLeague, getDataFailure, createDataFailure, getchatFixture
   } =fixture.actions;

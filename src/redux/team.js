@@ -3,6 +3,7 @@ import firebaseClient from 'firebase/client';
 
 const initialState = {
   data: [],
+  logo: [],
   isLoaded: false,
   hasErrors: false,
 };
@@ -13,9 +14,10 @@ const team = createSlice({
   reducers: {
     getData: (state) => {
     },
-
+    getLogo: (state, action) => {
+      state.logo = action.payload;
+    },
     getDataSuccess: (state, action) => {
-      state.isLoaded = true;
       state.data = action.payload;
     },
 
@@ -33,7 +35,7 @@ const team = createSlice({
 export const reducer =team.reducer;
 
 export const {
-  getData, getDataSuccess, getDataFailure, createDataFailure
+  getData, getDataSuccess, getDataFailure, createDataFailure, getLogo
 } =team.actions;
 
 export const fetchAllTeams = createAsyncThunk(
@@ -67,6 +69,33 @@ export const fetchNextDocs = createAsyncThunk(
         thunkAPI.dispatch(getDataFailure(error))
     }
 })
+
+
+//not functioning 16/7/2022
+export const fetchLogo = createAsyncThunk(
+  "team/fetchLogo",
+  async (payload, thunkAPI) => {
+    // Set the loading state to true
+    thunkAPI.dispatch(getData());
+
+    try {
+      const data = await _fetchLogoFromDb(payload.localId, payload.visitorId);
+      thunkAPI.dispatch(getLogo(data));
+    } catch (error) {
+      console.error('error', error)
+      // Set any erros while trying to fetch
+      thunkAPI.dispatch(getDataFailure(error));
+    }
+  }
+);
+
+const _fetchLogoFromDb = async (localId, visitorId) => {
+  const snapshot = await firebaseClient.firestore().collection('teams').where('team_id', "in", [localId, visitorId]).get();
+
+    const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    return data;
+}
 
 // export const createWidget = createAsyncThunk(
 //   "widget/createWidget",

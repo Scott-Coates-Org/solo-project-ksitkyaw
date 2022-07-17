@@ -14,9 +14,8 @@ import { styled } from '@mui/material/styles';
 import client from 'firebase/client';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDataSuccess, setLeague } from 'redux/standingdata';
+import { useHistory } from 'react-router-dom';
 
-
-const rows = ["Premier League", "La Liga", "Bundesliga", "Seria A", "Ligue1"];
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,6 +39,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 export default function LeaguesCard() {
+  const history = useHistory()
   const {data, isLoaded, hasErrors} = useSelector((state) => state.league)
   const dispatch = useDispatch();
 
@@ -64,12 +64,14 @@ export default function LeaguesCard() {
   }
 
   const handleClick = (e, id) => {
+    //want to push to the league route here
+    history.push('/league')
     fetch(`https://soccer.sportmonks.com/api/v2.0/standings/season/${id}?api_token=${process.env.REACT_APP_FOOTBALL_API_KEY}`)
     .then(res => res.json())
     .then(result => {
-      console.log(result?.data[0].standings.data);
+      // console.log(result?.data[0].standings.data);
       dispatch(getDataSuccess(result?.data[0].standings.data));
-      console.log(data);
+      // console.log(data);
       dispatch(setLeague(id));
     })
   }

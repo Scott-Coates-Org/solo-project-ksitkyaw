@@ -9,7 +9,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import IconButton from '@mui/material/IconButton';
 import { Link } from '@mui/material';
 
-
+//only one arrow is redirecting to the favourites wizard, may be in the future the other arrow might point to their respective step of the wizard
 export default function FavouritesCard() {
   return (
     <Card sx={{mb: 3, maxWidth: 400 }}>

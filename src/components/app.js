@@ -16,6 +16,7 @@ import League from './pages/League';
 import Profilepage from './pages/Profilepage';
 import Choose from './chooseFav/Choose';
 import { fetchAllLeagues } from 'redux/league';
+import FixtChat from './pages/FixtChat';
 
 // DO NOT import BrowserRouter (as per tutorial). that caused router to not actually do anything.
 // see here: https://stackoverflow.com/questions/63554233/react-router-v5-history-push-changes-the-address-bar-but-does-not-change-the
@@ -64,6 +65,7 @@ function App() {
             <Route exact path='/' component={Welcome} {...props}/>
             <Route path='/league' component={League} {...props}/>
             <Route path='/favourites' component={Choose} {...props}/>
+            <Route path='/fixture/:id' component={FixtChat} {...props}/>
             <Route path="/login" render={(routeProps) => <Login {...routeProps} {...props} firebase={firebase} />} />
             <Route path="/logout" render={(routeProps) => <Logout {...routeProps} {...props} firebase={firebase} />} />
 
